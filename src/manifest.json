@@ -1,0 +1,35 @@
+{
+  "name": "Whatsapp conversation assistant",
+  "description": "Efficient Whatsapp conversation assistant, responding to keywords, bulk send to all contacts",
+  "homepage_url": "https://restsend.com/?from=webstore",
+  "version": "1.0.2",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "64": "icons/icon_64.png",
+    "96": "icons/icon_96.png",
+    "128": "icons/icon_128.png"
+  },
+  "permissions": [
+    "webNavigation",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "index.js",
+        "waext.js",
+        "fonts/*",
+        "images/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

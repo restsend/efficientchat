@@ -1,0 +1,23 @@
+@import url("./base.css");
+@import url("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
+@import url("../css/icons.css");
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+ }
+
+ *{
+    box-sizing: border-box;
+ }
+ 
+
+ .el-select-dropdown{
+     z-index: 9999999 !important;
+ }
+ 
+ .notify a:focus, .notify input:focus,.notify p:focus,.notify div:focus{
+     -webkit-tap-highlight-color:rgba(0,0,0,0);
+     -webkit-user-modify:read-write-plaintext-only; 
+ }
