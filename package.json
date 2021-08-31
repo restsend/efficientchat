@@ -6,7 +6,9 @@
     "scripts": {
         "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js",
         "build_dev": "cross-env NODE_ENV=development webpack --config ./webpack.config.dev.js",
-        "dev": "cross-env NODE_ENV=development webpack -w --config ./webpack.config.dev.js"
+        "dev": "cross-env NODE_ENV=development webpack -w --config ./webpack.config.dev.js",
+        "build_zip": "rm -Rf dist && cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js && cd dist && zip -r ../wacrm_dist.zip * -x index.html"
+
     },
     "author": "",
     "license": "ISC",
