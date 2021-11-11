@@ -30,7 +30,7 @@ class WAExtApi {
             { id: "MediaProcess", conditions: (module) => (module.BLOB) ? module : null },
             { id: "Wap", conditions: (module) => (module.createGroup) ? module : null },
             { id: "ServiceWorker", conditions: (module) => (module.default && module.default.killServiceWorker) ? module : null },
-            { id: "State", conditions: (module) => (module.STATE && module.STREAM && module.default._listeningTo && module.default._listeningTo.l3) ? module.default._listeningTo.l3 : null },
+            { id: "State", conditions: (module) => (module.STATE && module.STREAM && module.default._listeningTo && module.default._listeningTo.l2) ? module.default._listeningTo.l2 : null },
             { id: "WapDelete", conditions: (module) => (module.sendConversationDelete && module.sendConversationDelete.length == 2) ? module : null },
             { id: "Conn", conditions: (module) => (module.default && module.default.ref && module.default.refTTL) ? module.default : null },
             { id: "WapQuery", conditions: (module) => (module.queryExist) ? module : ((module.default && module.default.queryExist) ? module.default : null) },
@@ -135,5 +135,9 @@ class WAExtApi {
     }
 
 }
-
-window.waAPI = new WAExtApi();
+try {
+    window.waAPI = new WAExtApi();
+    console.log("init EfficientChat https://restsend.com/?from=debug_console")
+} catch (e) {
+    console.log(e)
+}

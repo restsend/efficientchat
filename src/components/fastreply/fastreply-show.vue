@@ -15,7 +15,7 @@
     >
       <transition-group type="transition" :name="!drag ? 'flip-list' : null">
         <li v-for="item in replyList" :key="item.id">
-          <span @click="send(item)" v-html="item"></span
+          <span @click="send(item.msg)" v-html="item.msg"></span
           ><i v-if="false" class="handle el-icon-sort"></i>
         </li>
       </transition-group>
@@ -39,10 +39,10 @@ export default {
   async created() {
     var msgs = await this.$root.clip.quickReply.getMessages();
     var idx = 0;
+    this.replyList = [];
     msgs.forEach((m) => {
-      m.id = idx++;
+      this.replyList.push({ msg: m, id: idx++ });
     });
-    this.replyList = msgs;
   },
   methods: {
     edit() {

@@ -18,7 +18,6 @@
         ref="bottomBar"
       />
     </div>
-
   </div>
 </template>
 
@@ -29,7 +28,7 @@ import FunctionPage from "./function-page.vue";
 import { createFastReply } from "@/components/fastreply/index";
 
 export default {
-  components: { WacrmAside, BottomBar, WacrmLogin, FunctionPage },
+  components: { WacrmAside, BottomBar, FunctionPage },
   name: "container",
   props: { config: Object },
   data() {

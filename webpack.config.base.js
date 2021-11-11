@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const pkg = require('./package.json');
-const version = "1.0.4";
+const version = "1.0.5";
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -90,6 +90,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.WACRM_VERSION': `"${version}"`,
+            'process.env.API': '"https://restsend.com"',
             global: 'window',
         }),
         new VueLoaderPlugin(),
@@ -107,6 +108,11 @@ module.exports = {
                     from: 'manifest.json', to: 'manifest.json',
                     transform: (content, absoluteFrom) => {
                         let cobj = JSON.parse(content.toString());
+                        let store = 'chrome'
+                        if (process.env.TARGET_STORE) {
+                            store = process.env.TARGET_STORE
+                        }
+                        cobj["homepage_url"] = cobj["homepage_url"] + store
                         cobj["version"] = version;
 
                         if (process.env.NODE_ENV == "development") {

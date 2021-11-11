@@ -1,5 +1,3 @@
-
-
 import { createAppUI } from "./components/wacrm/index"
 import { defaultConfig } from "./config"
 import Clip from "./services/clip"
@@ -11,7 +9,6 @@ class RestSendApp {
     constructor() {
         this.clip = null
     }
-
     init(container) {
         const oldApp = document.getElementById('rsapp-container');
         if (oldApp) {

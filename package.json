@@ -1,14 +1,14 @@
 {
     "name": "restsendcrm",
     "version": "1.0.0",
-    "description": "",
+    "description": "Efficient Whatsapp conversation assistant, responding to keywords, bulk send to all contacts",
     "main": "index.js",
     "scripts": {
         "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js",
         "build_dev": "cross-env NODE_ENV=development webpack --config ./webpack.config.dev.js",
         "dev": "cross-env NODE_ENV=development webpack -w --config ./webpack.config.dev.js",
-        "build_zip": "rm -Rf dist && cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js && cd dist && zip -r ../wacrm_dist.zip * -x index.html"
-
+        "chrome": "rm -Rf dist dist_chrome.zip  && cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js && cd dist && zip -r ../dist_chrome.zip * -x index.html",
+        "edge": "rm -Rf dist dist_edge.zip && cross-env NODE_ENV=production  TARGET_STORE=edge webpack --config ./webpack.config.prod.js && cd dist && zip -r ../dist_edge.zip * -x index.html"
     },
     "author": "",
     "license": "ISC",

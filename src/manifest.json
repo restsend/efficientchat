@@ -1,8 +1,8 @@
 {
   "name": "Whatsapp conversation assistant",
   "description": "Efficient Whatsapp conversation assistant, responding to keywords, bulk send to all contacts",
-  "homepage_url": "https://restsend.com/?from=webstore",
-  "version": "1.0.2",
+  "homepage_url": "https://restsend.com/?from=webstore_",
+  "version": "1.0.5",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
