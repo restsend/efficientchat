@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const pkg = require('./package.json');
-const version = "1.0.5";
+const version = "1.0.6";
 
 module.exports = {
     mode: process.env.NODE_ENV,
