@@ -50,9 +50,8 @@ export default {
     async confirm(text) {
       if (this.name) {
         this.flag = false;
-        let textarea = text.replace(/<(?!\/?br\/?.+?>)[^<>]*>/g, "")
-        if (textarea !== "") {
-          let msg = new AutoReplyMsg(this.name, textarea);
+        if (text !== "") {
+          let msg = new AutoReplyMsg(this.name, text);
           if (this.pos === -1) {
             await this.$root.clip.autoReply.setMessage(msg);
           } else {

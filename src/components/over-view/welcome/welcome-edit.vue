@@ -106,10 +106,10 @@ export default {
     confirm () {
       if (this.textarea) {
         this.textarea = "<pre>" + this.textarea + "</pre>"
-        var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+        this.textarea = this.textarea.replace(/<(?!\/?br\/?.+?>)[^<>]*>/g, "")
         this.$emit(
           "confirm",
-          this.textarea.replace(reg, "<a target='_blank' href='$1$2'>$1$2</a>")
+          this.textarea
         );
       } else {
         this.$emit("confirm", "");
