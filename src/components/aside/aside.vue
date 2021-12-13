@@ -8,53 +8,74 @@
           @click.stop="asideName(item.label)"
           :class="{ active: asideActive === item.label }"
         >
-          <img :src="item.icon" alt="" onload="SVGInject(this)" />
+          <el-tooltip
+            class="item"
+            effect="dark"
+            :content="item.tooltip"
+            placement="top"
+          >
+            <span
+              style="
+                display: flex;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img :src="item.icon" alt="" onload="SVGInject(this)" />
+            </span>
+          </el-tooltip>
         </li>
       </ul>
     </div>
   </div>
 </template>
-
+    
 
 <script>
 export default {
   name: "wacrm-aside",
   props: { asideNameIndex: String },
-  data() {
+  data () {
     return {
       aside: [
         {
           name: "Tags",
           icon: require("@/images/tags.svg"),
           label: "WacrmLabel",
+          tooltip:"Customer Tags"
         },
         {
           name: "Welcome",
           icon: require("@/images/welcome.svg"),
           label: "Welcome",
+          tooltip:"Welcome Messages"
         },
         {
           name: "AutoReplay",
           icon: require("@/images/reply.svg"),
           label: "WacrmReply",
+          tooltip:"Keyword Reply"
         },
         {
           name: "radio",
           icon: require("@/images/radio.svg"),
           label: "AMass",
+          tooltip:"Broadcast"
         },
       ],
       asideActive: "index",
     };
   },
   watch: {
-    asideNameIndex(val) {
+    asideNameIndex (val) {
       this.asideActive = val;
       this.$emit("asideName", this.asideActive);
     },
   },
   methods: {
-    asideName(name) {
+    asideName (name) {
       if (this.asideActive === name) {
         this.asideActive = "index";
       } else {

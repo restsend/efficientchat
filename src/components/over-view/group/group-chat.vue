@@ -88,7 +88,7 @@
                   >
                     <el-input
                       class="tagsearch"
-                      v-model="tagKeyword"
+                      v-model="user.tagKeyword"
                       @input="tagsearch"
                     ></el-input>
 
@@ -279,7 +279,7 @@ export default {
         let flag = false;
         element.tags.forEach((e) => {
           if (
-            e.name.toLowerCase().indexOf(this.tagKeyword.toLowerCase()) !== -1
+            e.name.toLowerCase().indexOf(this.user.tagKeyword.toLowerCase()) !== -1
           ) {
             flag = true;
           }

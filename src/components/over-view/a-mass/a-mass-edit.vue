@@ -2,14 +2,12 @@
   <div class="a-mass-edit">
     <div class="content">
       <div class="left">
-
         <a-mass-edit-list
           :height="500"
           :isTag="true"
           v-if="curId === 0"
           @multipleSelection="multipleSelection"
         />
-
       </div>
 
       <div class="right">
@@ -57,13 +55,14 @@
         <p>
           Number of messages per minute：<el-input
             v-model="sendCountPerMin"
+            @input="sendCountPerMinInput"
           ></el-input>
         </p>
 
         <el-button type="success" @click="send">Send</el-button>
       </div>
 
-      <div class="close" v-if="aside !== 'index'" @click="close">
+      <div class="close" @click="close">
         <img src="@/images/close.svg" alt="" onload="SVGInject(this)" />
       </div>
     </div>
@@ -77,7 +76,7 @@ export default {
   components: { aMassEditList, AMassEditCsv },
   name: "a-mass-edit",
   props: { label: Object },
-  data() {
+  data () {
     return {
       input: "",
       textarea: "",
@@ -90,39 +89,67 @@ export default {
     };
   },
   methods: {
-    handleInput($event) {
+    handleInput ($event) {
       this.textarea = $event.target.innerText;
     },
-    navActive(id) {
+    navActive (id) {
       this.curId = id;
     },
-    close() {
+    close () {
       this.$emit("labelName", "WacrmLabelShow");
     },
-    userName() {
+    userName () {
       this.textarea += "[name]";
     },
-    realTimeTextContent(text) {
+    realTimeTextContent (text) {
       this.message = text;
     },
-    handleLastNames() {
+    handleLastNames () {
       this.handleLastName = "";
     },
-    multipleSelection(val) {
+    multipleSelection (val) {
       this.contacts = val;
     },
-    async send() {
+    sendCountPerMinInput () {
+      if (this.sendCountPerMin <= 0) {
+        this.sendCountPerMin = 1
+      }
+    },
+    async send () {
       if (this.contacts.length !== 0) {
         if (this.textarea) {
           if (Number(this.sendCountPerMin) > 0) {
-            await this.$root.clip.batch.startJob(
+            let data = await this.$root.clip.batch.startJob(
               this.contacts,
               this.textarea,
               Number(this.sendCountPerMin)
             );
+            this.$message({
+              showClose: true,
+              message: "successful",
+              type: "success",
+            });
             this.$emit("labelName", "WacrmLabelShow", true);
+          } else {
+            this.$message({
+              showClose: true,
+              message: "successful",
+              type: "warning",
+            });
           }
+        } else {
+          this.$message({
+            showClose: true,
+            message: "Content is required",
+            type: "warning",
+          });
         }
+      } else {
+        this.$message({
+          showClose: true,
+          message: "Contacts is required",
+          type: "warning",
+        });
       }
     },
   },
@@ -139,11 +166,12 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 999;
+  overflow-x: hidden;
   .content {
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
+    top: 100px;
+    transform: translate3d(-50%, 0, 0);
     background-color: #fff;
     display: flex;
     border-radius: 3px;

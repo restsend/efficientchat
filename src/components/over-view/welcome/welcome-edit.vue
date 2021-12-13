@@ -32,7 +32,6 @@
 
     <div class="btn">
       <div class="left">
-
         <el-tooltip
           v-if="false"
           class="item"
@@ -85,29 +84,28 @@ export default {
     reply: Object,
     welcomeText: String,
   },
-  data() {
+  data () {
     return {
       text: "",
       faceList: [],
       textarea: "",
     };
   },
-  mounted() {
-    for (let i in appData) {
-      this.faceList.push(appData[i].char);
+  mounted () {
+    // for (let i in appData) {
+    //   this.faceList.push(appData[i].char);
+    // }
+    if (this.welcomeText) {
+      this.textarea = this.welcomeText.replace(/<(?!\/?br\/?.+?>)[^<>]*>/g, "");
     }
-
-      if(this.welcomeText){
-        this.textarea = this.welcomeText.replace(/<(?!\/?br\/?.+?>)[^<>]*>/g,"");
-      }
   },
   methods: {
-    cancel() {
+    cancel () {
       this.$emit("cancel", "");
     },
-    confirm() {
+    confirm () {
       if (this.textarea) {
-        this.textarea="<pre>"+this.textarea+"</pre>"
+        this.textarea = "<pre>" + this.textarea + "</pre>"
         var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
         this.$emit(
           "confirm",
@@ -117,14 +115,14 @@ export default {
         this.$emit("confirm", "");
       }
     },
-    welcome_edit_getEmo(index) {
+    welcome_edit_getEmo (index) {
       var textArea = document.getElementById("textarea");
 
       this.changeSelectedText(textArea, this.faceList[index]);
       this.textarea = textArea.value;
       return;
     },
-    changeSelectedText(obj, str) {
+    changeSelectedText (obj, str) {
       if (window.getSelection) {
         obj.setRangeText(str);
 
@@ -136,7 +134,7 @@ export default {
         sel.text = str;
       }
     },
-    nickname() {
+    nickname () {
       var textArea = document.getElementById("textarea");
       textArea.focus();
       this.textarea += "{{UserName}}";
