@@ -13,7 +13,7 @@
         <template slot="title"><i class="el-icon-help"></i></template>
         <el-menu-item index="2-1">
           <a
-            href="https://api.whatsapp.com/send?phone=+8618158525856&text=I'm%20an%20EfficientChat%20customer%20with%20a%20question."
+            href="https://api.whatsapp.com/send?phone=+8618158131210&text=I'm%20an%20EfficientChat%20customer%20with%20a%20question."
             style="color: #909399"
             target="_blank"
             >✨ Contact us 🔥</a
