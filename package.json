@@ -1,6 +1,6 @@
 {
     "name": "restsendcrm",
-    "version": "1.0.0",
+    "version": "1.0.8",
     "description": "Efficient Whatsapp conversation assistant, responding to keywords, bulk send to all contacts",
     "main": "index.js",
     "scripts": {
